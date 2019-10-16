@@ -1,9 +1,8 @@
 version: '2'
 services:
   rabbitmq:
-    image: pivotalrabbitmq/rabbitmq-autocluster
+    image: rabbitmq:3-management
     container_name: rabbitmq
-    hostname: rabbitmq
     ports:
       - "1883:1883"
       - "4369:4369"
@@ -21,6 +20,3 @@ services:
      - RABBITMQ_DEFAULT_USER=mqadmin
      - RABBITMQ_DEFAULT_PASS=Admin123XX_
      - CLUSTERED=true
-     - AUTOCLUSTER_TYPE=aws
-     - AUTOCLUSTER_LOG_LEVEL=debug
-     - AWS_AUTOSCALING=true
