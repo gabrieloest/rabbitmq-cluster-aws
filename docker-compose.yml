@@ -1,0 +1,26 @@
+version: '2'
+services:
+  rabbitmq:
+    image: pivotalrabbitmq/rabbitmq-autocluster
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - "1883:1883"
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "8883:8883"
+      - "15671:15671"
+      - "15672:15672"
+      - "25672:25672"
+    network_mode: "bridge"
+    volumes:
+     - $PWD/storage/rabbitmq-$HOSTNAME:/var/lib/rabbitmq
+    environment:
+     - RABBITMQ_ERLANG_COOKIE=This_is_my_secret_phrase
+     - RABBITMQ_DEFAULT_USER=mqadmin
+     - RABBITMQ_DEFAULT_PASS=Admin123XX_
+     - CLUSTERED=true
+     - AUTOCLUSTER_TYPE=aws
+     - AUTOCLUSTER_LOG_LEVEL=debug
+     - AWS_AUTOSCALING=true
